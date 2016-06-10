@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.viewpager)
     ViewPager viewPager;
+    // test commit
 
     ViewPagerAdapter viewPagerAdapter;
 
