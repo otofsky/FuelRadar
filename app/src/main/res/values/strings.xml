@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FuelRadar</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--Tab titles -->
+    <string name="tab_nearby">nearby</string>
+    <string name="tab_favorite">favorite</string>
+    <string name="tab_route">route</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>

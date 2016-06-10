@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="tui_action_bar">#f4fbff</color>
+    <color name="tui_background">#f1f6fc</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gray">#6c6c6c</color>
+    <color name="dark_gray">#454545</color>
+
+    <color name="light_gray">#b9c0cd</color>
+    <color name="green">#ff18a035</color>
+    <color name="blue">#519eda</color>
+    <color name="blue_semi_transparent">#95519eda</color>
+
+    <color name="dark_blue">#031c46</color>
+    <color name="light_blue">#402def</color>
+    <color name="gray_xlight">#f2f2f2</color>
+
+
+    <color name="samsung_gray">#75787b</color>
+    <color name="samsung_blue_funny">#00b3e3</color>
+    <color name="samsung_dark_blue">#1428a0</color>
+    <color name="samsung_dark_blue99">#991428a0</color>
+    <color name="samsung_violet">#9363cc</color>
+
+    <color name="samsung_ranking_list">#7d8efa</color>
+
+
+
+
+
+    <color name="red">#cc0b18</color>
+    <color name="orange">#FF8800</color>
+    <color name="samsung_plum">#9363CC</color>
+    <color name="samsung_hibiscus">#D939B2</color>
+    <color name="samsung_coral">#FF4337</color>
+    <color name="samsung_pepper">#FF7F3F</color>
+    <color name="samsung_saffron">#FFB546</color>
+    <color name="samsung_yellow">#f8e946</color>
+    <color name="samsung_sprout">#CEDE00</color>
+    <color name="samsung_clover">#97D653</color>
+    <color name="samsung_kelp">#00C3B2</color>
+
+    <color name="transparent">#00ffffff</color>
+
+
+</resources>
