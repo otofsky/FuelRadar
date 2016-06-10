@@ -6,8 +6,9 @@ import android.util.Log;
 import java.util.List;
 
 
+import pl.mobile.fuelradar.data.Service;
 import pl.mobile.fuelradar.data.model.FueilingStation;
-import pl.mobile.fuelradar.data.model.remote.Service;
+
 import pl.mobile.fuelradar.ui.base.BasePresenter;
 
 /**

@@ -2,6 +2,7 @@ package pl.mobile.fuelradar.ui.home;
 
 import java.util.List;
 
+
 import pl.mobile.fuelradar.data.model.FueilingStation;
 import pl.mobile.fuelradar.ui.base.MvpView;
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.data.model.FueilingStation;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
@@ -35,7 +35,7 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
 
     List<FueilingStation> fueilingStations = new ArrayList<FueilingStation>();
     NearbyPresenter nearbyPresenter;
-    Unbinder unbinder;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     FuelAdapter mAdapter;
@@ -54,7 +54,7 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nearby, container, false);
-        unbinder = ButterKnife.bind(this, view);
+         ButterKnife.bind(this, view);
         nearbyPresenter = new NearbyPresenter();
         nearbyPresenter.attachView(this);
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -123,7 +123,7 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
 
     @Override
     public void onDestroyView() {
-        unbinder.unbind();
+        ButterKnife.unbind(this);
         super.onDestroyView();
     }
 

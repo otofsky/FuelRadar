@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.data.model.FueilingStation;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
@@ -21,7 +21,7 @@ import pl.mobile.fuelradar.ui.home.NearbyMvpView;
  */
 public class RouteFragment extends Fragment implements NearbyMvpView {
 
-    Unbinder unbinder;
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class RouteFragment extends Fragment implements NearbyMvpView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_route, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return  view;
     }
 
@@ -76,7 +76,7 @@ public class RouteFragment extends Fragment implements NearbyMvpView {
 
     @Override
     public void onDestroyView() {
-        unbinder.unbind();
+        ButterKnife.unbind(this);
         super.onDestroyView();
     }
 

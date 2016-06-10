@@ -23,9 +23,11 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/samsung_dark_blue"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/black"
+        app:tabIndicatorColor="@color/white"
+        app:tabTextColor="@color/white"
+        style="@style/Base.Widget.Design.TabLayout"
         app:tabMode="fixed" />
 
     <android.support.v4.view.ViewPager

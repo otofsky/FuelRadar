@@ -1,4 +1,4 @@
-package pl.mobile.fuelradar.data.model.remote;
+package pl.mobile.fuelradar.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;

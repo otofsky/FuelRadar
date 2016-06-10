@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 import pl.mobile.fuelradar.R;
 
 /**
@@ -17,7 +17,7 @@ import pl.mobile.fuelradar.R;
  */
 public class FavoritesFragment extends Fragment {
 
-    Unbinder unbinder;
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class FavoritesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return  view;
     }
 
@@ -71,7 +71,7 @@ public class FavoritesFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        unbinder.unbind();
+        ButterKnife.unbind(this);
         super.onDestroyView();
     }
 

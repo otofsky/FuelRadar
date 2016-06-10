@@ -1,38 +1,59 @@
 package pl.mobile.fuelradar.ui.home;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.ui.home.adapter.ViewPagerAdapter;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @BindView(R.id.tabs)
+    @Bind(R.id.tabs)
     TabLayout tabLayout;
 
-    @BindView(R.id.viewpager)
+    @Bind(R.id.viewpager)
     ViewPager viewPager;
     // test commit    ////
-
+    Toolbar toolbar;
     ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_bar_home);
+        setContentView(R.layout.activity_home);
+
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initViewPager();
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+     //   navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
 
     }
 
@@ -67,6 +88,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
      /*   DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
