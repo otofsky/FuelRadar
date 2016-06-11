@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import pl.mobile.fuelradar.ui.home.fragment.FavoritesFragment;
+import pl.mobile.fuelradar.ui.home.fragment.MapsFragment;
 import pl.mobile.fuelradar.ui.home.fragment.NearbyFragment;
 import pl.mobile.fuelradar.ui.home.fragment.RouteFragment;
 
@@ -29,7 +30,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 FavoritesFragment tab2 = new FavoritesFragment();
                 return tab2;
             case 2:
-                RouteFragment tab3 = new RouteFragment();
+                MapsFragment tab3 = new MapsFragment();
                 return tab3;
             default:
                 return null;

@@ -21,7 +21,7 @@ import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.ui.home.adapter.ViewPagerAdapter;
 
 public class HomeActivity extends AppCompatActivity {
-
+//https://github.com/googlemaps/android-samples/blob/master/ApiDemos/app/src/main/java/com/example/mapdemo/PolylineDemoActivity.java
     @Bind(R.id.tabs)
     TabLayout tabLayout;
 
