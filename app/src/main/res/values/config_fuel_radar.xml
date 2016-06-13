@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fuel Radar</string>
+    <bool name="log_debug">false</bool>
+    <string name="endpoint">https://maps.googleapis.com/maps/api/place/nearbysearch/</string>
+
+</resources>
