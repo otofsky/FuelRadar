@@ -18,12 +18,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
+
 import pl.mobile.fuelradar.R;
+import pl.mobile.fuelradar.data.model.FueilingStation;
+import pl.mobile.fuelradar.data.model.places.Geometry;
+import pl.mobile.fuelradar.data.model.places.Location;
+import pl.mobile.fuelradar.data.model.places.Response;
+import pl.mobile.fuelradar.data.model.places.Result;
+import pl.mobile.fuelradar.ui.home.NearbyMvpView;
+import pl.mobile.fuelradar.util.MapHelper;
 
 /**
  * Created by zjuroszek on 11.06.16.
  */
-public class MapsFragment extends Fragment implements OnMapReadyCallback {
+public class MapsFragment extends Fragment implements OnMapReadyCallback, NearbyMvpView {
 
     private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
 
@@ -49,7 +60,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
     MapView mMapView;
 
-//https://developers.google.com/places/android-api/add-place#add-place
+    //https://developers.google.com/places/android-api/add-place#add-place
     @Override
     public void onDetach() {
         super.onDetach();
@@ -119,33 +130,58 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setContentDescription("Google Map with polylines.");
 
-        // A simple polyline with the default options from Melbourne-Adelaide-Perth.
-       /* mMap.addPolyline((new PolylineOptions())
-                .add(MELBOURNE, ADELAIDE, PERTH));*/
-
-        // A geodesic polyline that goes around the world.
-  /*      mClickablePolyline = mMap.addPolyline((new PolylineOptions())
-                        .add(LHR, AKL, LAX, JFK, LHR)
-                        .width(5)
-                        .color(Color.BLUE)
-                        .geodesic(true)
-        );*/
-
-        // Rectangle centered at Sydney.  This polyline will be mutable.
-  /*      int radius = 5;
-        PolylineOptions options = new PolylineOptions()
-                .add(new LatLng(SYDNEY.latitude + radius, SYDNEY.longitude + radius))
-                .add(new LatLng(SYDNEY.latitude + radius, SYDNEY.longitude - radius))
-                .add(new LatLng(SYDNEY.latitude - radius, SYDNEY.longitude - radius))
-                .add(new LatLng(SYDNEY.latitude - radius, SYDNEY.longitude + radius))
-                .add(new LatLng(SYDNEY.latitude + radius, SYDNEY.longitude + radius));
-        mMutablePolyline = mMap.addPolyline(options);*/
+        mMap.addPolyline((new PolylineOptions())
+                .add(MELBOURNE, ADELAIDE, PERTH));
 
 
         // Move the map so that it is centered on the mutable polyline.
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
 
         // Add a listener for polyline clicks that changes the clicked polyline's color.
+    }
+
+
+    @Override
+    public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
+        Iterable<LatLng> points = MapHelper.generateLocations(fueilingStatResponse);
+        mMap.addPolyline((new PolylineOptions())
+                        .add(MELBOURNE, ADELAIDE, PERTH)
+                        .addAll(points)
+        );
+    }
+
+    @Override
+    public void showFavoriteFuelStations(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFuelStationsBySelectedRout(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFuelingStations(List<FueilingStation> fueilingStationList) {
+
+    }
+
+    @Override
+    public void showFuelingStationEmpty() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void setProgressIndicator(boolean active) {
+
+    }
+
+    @Override
+    public void showFuelingStationListUi(String gId) {
 
     }
 }

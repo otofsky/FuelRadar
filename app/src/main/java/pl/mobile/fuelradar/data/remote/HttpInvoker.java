@@ -6,6 +6,8 @@ import android.util.Log;
 import okhttp3.OkHttpClient;
 
 import okhttp3.logging.HttpLoggingInterceptor;
+import pl.mobile.fuelradar.data.model.places.Response;
+import pl.mobile.fuelradar.util.Constants;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,12 +16,12 @@ import rx.schedulers.Schedulers;
 
 
 public class HttpInvoker {
-    private String TAG = "WeatherInvoker";
+    private String TAG = "HttpInvoker";
     private static HttpInvoker httpsInvoker;
 
-    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=YOUR_API_KEY
+    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDaWsv4OfAZEVu6bxSA62cSoDFOxoGCmIo
 
-    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/";
+
 
     private HttpInterface weatherInterface;
 
@@ -30,7 +32,7 @@ public class HttpInvoker {
 
         RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(rxAdapter)
                 .client(client)
@@ -49,9 +51,9 @@ public class HttpInvoker {
     }
 
 
-/*    public Observable<Current> getCurrentWeather(String city) {
+    public Observable<Response> getNearby() {
         Log.d(TAG, "getCurrentWeather: ");
-        return weatherInterface.getCurrent("Cieszyn");
-    }*/
+        return weatherInterface.getNearby();
+    }
 
 }

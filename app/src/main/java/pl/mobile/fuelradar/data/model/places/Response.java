@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Example {
+public class Response {
 
     private List<Object> htmlAttributions = new ArrayList<Object>();
     private List<Result> results = new ArrayList<Result>();

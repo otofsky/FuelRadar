@@ -3,5 +3,6 @@
     <string name="app_name">Fuel Radar</string>
     <bool name="log_debug">false</bool>
     <string name="endpoint">https://maps.googleapis.com/maps/api/place/nearbysearch/</string>
+    <string name="serverApiKey">AIzaSyDaWsv4OfAZEVu6bxSA62cSoDFOxoGCmIo-JHE</string>
 
 </resources>

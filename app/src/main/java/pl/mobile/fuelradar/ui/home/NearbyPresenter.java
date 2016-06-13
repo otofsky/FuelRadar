@@ -46,10 +46,7 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
                 Log.d("NearbyPresenter", "onFailure: ");
             }
         });
-
-
     }
-
 
     public interface Callback<T> {
         void onSuccess(T t);

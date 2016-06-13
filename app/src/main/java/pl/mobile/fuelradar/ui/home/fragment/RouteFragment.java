@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.data.model.FueilingStation;
+import pl.mobile.fuelradar.data.model.places.Response;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
 
 /**
@@ -88,6 +89,21 @@ public class RouteFragment extends Fragment implements NearbyMvpView {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFavoriteFuelStations(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFuelStationsBySelectedRout(Response fueilingStatResponse) {
+
     }
 
     @Override

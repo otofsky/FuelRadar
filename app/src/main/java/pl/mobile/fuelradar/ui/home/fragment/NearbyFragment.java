@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.data.model.FueilingStation;
+import pl.mobile.fuelradar.data.model.places.Response;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
 import pl.mobile.fuelradar.ui.home.NearbyPresenter;
 import pl.mobile.fuelradar.ui.home.adapter.FuelAdapter;
@@ -134,6 +135,23 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
         super.onDestroy();
     }
 
+
+
+
+    @Override
+    public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFavoriteFuelStations(Response fueilingStatResponse) {
+
+    }
+
+    @Override
+    public void showFuelStationsBySelectedRout(Response fueilingStatResponse) {
+
+    }
 
     @Override
     public void showFuelingStations(List<FueilingStation> fueilingStationList) {
