@@ -6,8 +6,8 @@ import android.util.Log;
 import okhttp3.OkHttpClient;
 
 import okhttp3.logging.HttpLoggingInterceptor;
+import pl.mobile.fuelradar.Constants;
 import pl.mobile.fuelradar.data.model.places.Response;
-import pl.mobile.fuelradar.util.Constants;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -32,7 +32,7 @@ public class HttpInvoker {
 
         RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.ENDPOINT)
+                .baseUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(rxAdapter)
                 .client(client)
@@ -52,7 +52,7 @@ public class HttpInvoker {
 
 
     public Observable<Response> getNearby() {
-        Log.d(TAG, "getCurrentWeather: ");
+        Log.d(TAG, "getNearbyStations: ");
         return weatherInterface.getNearby();
     }
 

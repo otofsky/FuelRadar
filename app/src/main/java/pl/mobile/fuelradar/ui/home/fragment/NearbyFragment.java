@@ -108,7 +108,7 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
     @Override
     public void onResume() {
 
-        nearbyPresenter.loadNearby();
+       //nearbyPresenter.loadNearby();
         super.onResume();
     }
 

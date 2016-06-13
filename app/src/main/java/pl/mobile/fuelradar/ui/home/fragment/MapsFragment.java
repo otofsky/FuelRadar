@@ -1,7 +1,7 @@
 package pl.mobile.fuelradar.ui.home.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -18,17 +18,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentSkipListSet;
 
+import butterknife.ButterKnife;
 import pl.mobile.fuelradar.R;
 import pl.mobile.fuelradar.data.model.FueilingStation;
-import pl.mobile.fuelradar.data.model.places.Geometry;
-import pl.mobile.fuelradar.data.model.places.Location;
 import pl.mobile.fuelradar.data.model.places.Response;
-import pl.mobile.fuelradar.data.model.places.Result;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
+import pl.mobile.fuelradar.ui.home.NearbyPresenter;
 import pl.mobile.fuelradar.util.MapHelper;
 
 /**
@@ -61,21 +58,31 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     MapView mMapView;
 
     //https://developers.google.com/places/android-api/add-place#add-place
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
+
+
+    NearbyPresenter nearbyPresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        nearbyPresenter = new NearbyPresenter();
     }
+
+    //  @DebugLog
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setRetainInstance(true);
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
             rootView = inflater.inflate(R.layout.fragment_map, container, false);
-
+            nearbyPresenter.attachView(this);
+            ButterKnife.bind(this, rootView);
 
             MapsInitializer.initialize(this.getActivity());
             mMapView = (MapView) rootView.findViewById(R.id.map);
@@ -87,15 +94,26 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
         return rootView;
     }
 
+
+    //@DebugLog
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+        nearbyPresenter.loadCurrentWeather();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
         mMapView.onPause();
     }
 
+    // @DebugLog
     @Override
     public void onDestroy() {
         super.onDestroy();
+        nearbyPresenter.detachView();
         mMapView.onDestroy();
     }
 
@@ -112,14 +130,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @Override
