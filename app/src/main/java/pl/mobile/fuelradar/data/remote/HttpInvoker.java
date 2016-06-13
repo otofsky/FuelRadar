@@ -17,6 +17,8 @@ public class HttpInvoker {
     private String TAG = "WeatherInvoker";
     private static HttpInvoker httpsInvoker;
 
+    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=YOUR_API_KEY
+
     public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/";
 
     private HttpInterface weatherInterface;
