@@ -11,8 +11,8 @@ import rx.Observable;
  */
 public class DataManager {
 
-    public Observable<Response> getNearbyStations(){
-        return HttpInvoker.getInstance().getNearby();
+    public Observable<Response> getNearbyStations(String location, int radius){
+        return HttpInvoker.getInstance().getNearby(location,radius);
     }
 
 }

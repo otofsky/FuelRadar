@@ -17,7 +17,7 @@ public interface HttpInterface {
     @GET("weather?&APPID=ab6b80c5f1d39e5f3b6fac39594910c4&units=metric")
     Observable<Response> getNearby(@Query("q") String city);*/
 
-    @GET("json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDaWsv4OfAZEVu6bxSA62cSoDFOxoGCmIo")
-    Observable<Response> getNearby();
+    @GET("json?&types=food&name=cruise&key=AIzaSyDaWsv4OfAZEVu6bxSA62cSoDFOxoGCmIo")
+    Observable<Response> getNearby(@Query("location") String latitude,@Query("radius") int radius );
 
 }

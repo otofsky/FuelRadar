@@ -3,6 +3,7 @@ package pl.mobile.fuelradar.ui.home.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -95,12 +97,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     }
 
 
+/*    public final double latitude;
+    public final double longitude;
+    */
     //@DebugLog
     @Override
     public void onResume() {
         super.onResume();
         mMapView.onResume();
-        nearbyPresenter.loadCurrentWeather();
+        LatLng sydney = new LatLng(-34, 151);
+        nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957",1000);
     }
 
     @Override
@@ -157,8 +163,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     @Override
     public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
         Iterable<LatLng> points = MapHelper.generateLocations(fueilingStatResponse);
+        Iterator var2 = points.iterator();
+        while(var2.hasNext()) {
+            LatLng var3 = (LatLng)var2.next();
+            Log.d("MapFragment " , "" + var3.latitude);
+            Log.d("MapFragment " , "" + var3.longitude);
+        }
         mMap.addPolyline((new PolylineOptions())
-                        .add(MELBOURNE, ADELAIDE, PERTH)
+                        //.add(MELBOURNE, ADELAIDE, PERTH)
                         .addAll(points)
         );
     }

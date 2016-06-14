@@ -52,11 +52,10 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
         return super.isViewAttached();
     }
 
-    public void loadCurrentWeather() {
-        Log.d(TAG, "loadCurrentWeather: ");
-
+    public void loadNearbyFuelStationsByLocation(String location, int radius) {
+        Log.d(TAG, "loadNearbyFuelStationsByLocation: ");
         checkViewAttached();
-        mSubscription =  mDataManager.getNearbyStations()
+        mSubscription =  mDataManager.getNearbyStations(location, radius)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<Response>() {

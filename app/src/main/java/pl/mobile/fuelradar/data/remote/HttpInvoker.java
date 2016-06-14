@@ -22,7 +22,6 @@ public class HttpInvoker {
     //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDaWsv4OfAZEVu6bxSA62cSoDFOxoGCmIo
 
 
-
     private HttpInterface weatherInterface;
 
     private HttpInvoker() {
@@ -51,9 +50,11 @@ public class HttpInvoker {
     }
 
 
-    public Observable<Response> getNearby() {
+    public Observable<Response> getNearby(String location, int radius) {
         Log.d(TAG, "getNearbyStations: ");
-        return weatherInterface.getNearby();
+        //String latitude,@Query("radius") String radius
+        // return weatherInterface.getNearby("-33.8670,151.1957","1000");
+        return weatherInterface.getNearby(location, radius);
     }
 
 }
