@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initViewPager();
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -50,34 +49,8 @@ public class HomeActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //   navigationView.setNavigationItemSelectedListener(this);
-
-        MyHandler myHandler = new MyHandler(this);
-        myHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        },2000);
-
     }
 
-
-    private final class MyHandler extends Handler {
-
-        WeakReference <HomeActivity> weakReference;
-
-        public MyHandler(HomeActivity homeActivity) {
-           weakReference = new WeakReference<HomeActivity>(homeActivity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-
-            super.handleMessage(msg);
-        }
-
-
-    }
 
     private void initViewPager() {
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_nearby));

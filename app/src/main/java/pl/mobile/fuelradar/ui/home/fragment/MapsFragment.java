@@ -33,7 +33,7 @@ import pl.mobile.fuelradar.util.MapHelper;
  */
 public class MapsFragment extends Fragment implements OnMapReadyCallback, NearbyMvpView {
 
-  public   enum TYPE_TASK {
+    public enum TYPE_TASK {
         NEAREST,
         FAVOURITE,
         ROUTE
@@ -67,8 +67,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enumType = (TYPE_TASK) savedInstanceState.getSerializable(TASK_ARGUMENT_ID);
         nearbyPresenter = new NearbyPresenter();
+        enumType = (TYPE_TASK) getArguments().getSerializable(TASK_ARGUMENT_ID);
     }
 
     //  @DebugLog
@@ -83,12 +83,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
-
-
             rootView = inflater.inflate(R.layout.fragment_map, container, false);
             nearbyPresenter.attachView(this);
             ButterKnife.bind(this, rootView);
-
             MapsInitializer.initialize(this.getActivity());
             mMapView = (MapView) rootView.findViewById(R.id.map);
             mMapView.onCreate(savedInstanceState);
@@ -108,16 +105,19 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     public void onResume() {
         super.onResume();
         mMapView.onResume();
-        LatLng sydney = new LatLng(-34, 151);
+        loadData(enumType);
+    }
+
+    private void loadData(TYPE_TASK enumType){
         switch (enumType) {
             case NEAREST:
                 nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
                 break;
             case FAVOURITE:
-                nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
+                nearbyPresenter.loadNearbyFuelStationsByFavourites();
                 break;
             case ROUTE:
-                nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
+                nearbyPresenter.loadNearbyFuelStationsByRoute();
                 break;
         }
     }

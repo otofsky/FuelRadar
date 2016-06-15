@@ -3,13 +3,7 @@ package pl.mobile.fuelradar.ui.home;
 import android.os.Handler;
 import android.util.Log;
 
-import java.util.List;
-
-
 import pl.mobile.fuelradar.data.DataManager;
-import pl.mobile.fuelradar.data.Service;
-import pl.mobile.fuelradar.data.model.FueilingStation;
-
 import pl.mobile.fuelradar.data.model.places.Response;
 import pl.mobile.fuelradar.ui.base.BasePresenter;
 import rx.Subscriber;
@@ -55,7 +49,7 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
     public void loadNearbyFuelStationsByLocation(String location, int radius) {
         Log.d(TAG, "loadNearbyFuelStationsByLocation: ");
         checkViewAttached();
-        mSubscription =  mDataManager.getNearbyStations(location, radius)
+        mSubscription = mDataManager.getNearbyStations(location, radius)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<Response>() {
@@ -78,25 +72,14 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
                 });
     }
 
-/*    public void loadNearby() {
-        getMvpView().setProgressIndicator(true);
+    public void loadNearbyFuelStationsByFavourites() {
 
-        final List<FueilingStation> list = Service.getServiceInstance().getNearbyFueilingStations();
-      //  getMvpView().showFuelingStations(list);
-        // getMvpView().setProgressIndicator(false);
-        MyService service = new MyService();
-        service.getResources(new Callback<String>() {
-            @Override
-            public void onSuccess(String s) {
-                Log.d("NearbyPresenter", "onSuccess: " + s);
+    }
 
-            }
-            @Override
-            public void onFailure(String s) {
-                Log.d("NearbyPresenter", "onFailure: ");
-            }
-        });
-    }*/
+    public void loadNearbyFuelStationsByRoute() {
+
+    }
+
 
     public interface Callback<T> {
         void onSuccess(T t);
@@ -119,7 +102,7 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
                         callback.onFailure(" lipa");
                     }
                 }
-            },1000);
+            }, 1000);
 
             return "resource";
         }
