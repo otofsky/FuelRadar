@@ -24,14 +24,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                NearbyFragment tab1 = new NearbyFragment();
-                return tab1;
+                return MapsFragment.newInstance(MapsFragment.TYPE_TASK.NEAREST);
             case 1:
-                FavoritesFragment tab2 = new FavoritesFragment();
-                return tab2;
+                return MapsFragment.newInstance(MapsFragment.TYPE_TASK.FAVOURITE);
             case 2:
-                MapsFragment tab3 = new MapsFragment();
-                return tab3;
+                return MapsFragment.newInstance(MapsFragment.TYPE_TASK.ROUTE);
             default:
                 return null;
         }

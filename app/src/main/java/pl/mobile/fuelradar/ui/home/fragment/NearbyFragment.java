@@ -139,24 +139,24 @@ public class NearbyFragment extends Fragment implements NearbyMvpView {
 
 
     @Override
-    public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
+    public void showNearbyFuelStationsByLocation(Response fuelingStationResponse) {
 
     }
 
     @Override
-    public void showFavoriteFuelStations(Response fueilingStatResponse) {
+    public void showFavoriteFuelStations(Response fuelingStationResponse) {
 
     }
 
     @Override
-    public void showFuelStationsBySelectedRout(Response fueilingStatResponse) {
+    public void showFuelStationsBySelectedRout(Response fuelingStationResponse) {
 
     }
 
-    @Override
+  /*  @Override
     public void showFuelingStations(List<FueilingStation> fueilingStationList) {
         mAdapter.replaceData(fueilingStationList);
-    }
+    }*/
 
     @Override
     public void showFuelingStationEmpty() {

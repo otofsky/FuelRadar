@@ -20,11 +20,9 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.Iterator;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import pl.mobile.fuelradar.R;
-import pl.mobile.fuelradar.data.model.FueilingStation;
 import pl.mobile.fuelradar.data.model.places.Response;
 import pl.mobile.fuelradar.ui.home.NearbyMvpView;
 import pl.mobile.fuelradar.ui.home.NearbyPresenter;
@@ -35,6 +33,15 @@ import pl.mobile.fuelradar.util.MapHelper;
  */
 public class MapsFragment extends Fragment implements OnMapReadyCallback, NearbyMvpView {
 
+  public   enum TYPE_TASK {
+        NEAREST,
+        FAVOURITE,
+        ROUTE
+    }
+
+    public static final String TASK_ARGUMENT_ID = "TASK_ARGUMENT_ID";
+
+    TYPE_TASK enumType;
 
 
     private Polyline mMutablePolyline;
@@ -47,12 +54,20 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
 
     //https://developers.google.com/places/android-api/add-place#add-place
 
-
     NearbyPresenter nearbyPresenter;
+
+    public static MapsFragment newInstance(TYPE_TASK taskId) {
+        Bundle arguments = new Bundle();
+        arguments.putSerializable(TASK_ARGUMENT_ID, taskId);
+        MapsFragment fragment = new MapsFragment();
+        fragment.setArguments(arguments);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        enumType = (TYPE_TASK) savedInstanceState.getSerializable(TASK_ARGUMENT_ID);
         nearbyPresenter = new NearbyPresenter();
     }
 
@@ -68,6 +83,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
+
+
             rootView = inflater.inflate(R.layout.fragment_map, container, false);
             nearbyPresenter.attachView(this);
             ButterKnife.bind(this, rootView);
@@ -83,16 +100,26 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     }
 
 
-/*    public final double latitude;
-    public final double longitude;
-    */
+    /*    public final double latitude;
+        public final double longitude;
+        */
     //@DebugLog
     @Override
     public void onResume() {
         super.onResume();
         mMapView.onResume();
         LatLng sydney = new LatLng(-34, 151);
-        nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957",1000);
+        switch (enumType) {
+            case NEAREST:
+                nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
+                break;
+            case FAVOURITE:
+                nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
+                break;
+            case ROUTE:
+                nearbyPresenter.loadNearbyFuelStationsByLocation("-33.8670,151.1957", 1000);
+                break;
+        }
     }
 
     @Override
@@ -140,20 +167,20 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
 
 
         // Move the map so that it is centered on the mutable polyline.
-     //   mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
+        //   mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
 
         // Add a listener for polyline clicks that changes the clicked polyline's color.
     }
 
 
     @Override
-    public void showNearbyFuelStationsByLocation(Response fueilingStatResponse) {
-        Iterable<LatLng> points = MapHelper.generateLocations(fueilingStatResponse);
+    public void showNearbyFuelStationsByLocation(Response fuelingStationResponse) {
+        Iterable<LatLng> points = MapHelper.generateLocations(fuelingStationResponse);
         Iterator var2 = points.iterator();
-        while(var2.hasNext()) {
-            LatLng var3 = (LatLng)var2.next();
-            Log.d("MapFragment " , "" + var3.latitude);
-            Log.d("MapFragment " , "" + var3.longitude);
+        while (var2.hasNext()) {
+            LatLng var3 = (LatLng) var2.next();
+            Log.d("MapFragment ", "" + var3.latitude);
+            Log.d("MapFragment ", "" + var3.longitude);
         }
         mMap.addPolyline((new PolylineOptions())
                         //.add(MELBOURNE, ADELAIDE, PERTH)
@@ -162,17 +189,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Nearby
     }
 
     @Override
-    public void showFavoriteFuelStations(Response fueilingStatResponse) {
+    public void showFavoriteFuelStations(Response fuelingStationResponse) {
 
     }
 
     @Override
-    public void showFuelStationsBySelectedRout(Response fueilingStatResponse) {
-
-    }
-
-    @Override
-    public void showFuelingStations(List<FueilingStation> fueilingStationList) {
+    public void showFuelStationsBySelectedRout(Response fuelingStationResponse) {
 
     }
 

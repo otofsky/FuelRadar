@@ -78,11 +78,11 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
                 });
     }
 
-    public void loadNearby() {
+/*    public void loadNearby() {
         getMvpView().setProgressIndicator(true);
 
         final List<FueilingStation> list = Service.getServiceInstance().getNearbyFueilingStations();
-        getMvpView().showFuelingStations(list);
+      //  getMvpView().showFuelingStations(list);
         // getMvpView().setProgressIndicator(false);
         MyService service = new MyService();
         service.getResources(new Callback<String>() {
@@ -96,7 +96,7 @@ public class NearbyPresenter extends BasePresenter<NearbyMvpView> {
                 Log.d("NearbyPresenter", "onFailure: ");
             }
         });
-    }
+    }*/
 
     public interface Callback<T> {
         void onSuccess(T t);

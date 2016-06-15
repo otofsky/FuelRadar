@@ -10,13 +10,11 @@ import pl.mobile.fuelradar.ui.base.MvpView;
 
 public interface NearbyMvpView extends MvpView {
 
-    void showNearbyFuelStationsByLocation(Response fueilingStatResponse);
+    void showNearbyFuelStationsByLocation(Response fuelingStationResponse);
 
-    void showFavoriteFuelStations(Response fueilingStatResponse);
+    void showFavoriteFuelStations(Response fuelingStationResponse);
 
-    void showFuelStationsBySelectedRout(Response fueilingStatResponse);
-
-    void showFuelingStations(List<FueilingStation> fueilingStationList);
+    void showFuelStationsBySelectedRout(Response fuelingStationResponse);
 
     void showFuelingStationEmpty();
 
